@@ -1,38 +1,12 @@
 import React from 'react';
 import './App.css'
 
+import MainPanel from './components/MainPanel.js'
+
 function App() {
   return (
     <div class="container">
-      <div class="main-panel">
-        <div class="add-task">
-          <input  type="text" name="task" placeholder="add a new mission..."></input>
-          <span>+</span>
-        </div>
-        <div class="activity-task">
-          <span class="circle-lg main-decoration"></span>
-          <h3>the first thing to do today</h3>
-          <span class="circle-sm sub-decoration"></span>
-          <div>25:00</div>
-        </div>
-        <div class="tasks-group">
-          <ul>
-            <li>the second thing to do today
-              <i class="material-icons">play_circle_outline</i>
-            </li>
-
-            <li>the third thing to do today
-              <i class="material-icons">play_circle_outline</i>
-            </li>
-
-            <li>the fourth thing to do today
-              <i class="material-icons">play_circle_outline</i>
-            </li>
-          </ul>
-          <a href="/">more</a>
-        </div>
-      </div>
-
+      <MainPanel />
       <div class="sub-panel">
         <nav class="nav">
           <ul>
