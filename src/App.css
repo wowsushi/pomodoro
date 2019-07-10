@@ -1,33 +1,260 @@
-.App {
-  text-align: center;
+/* init */
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', 'Futura';
+  font-size: 16px;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+body {
+  text-transform: uppercase;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+a,
+a:hover {
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+li:before {
+  content: "";
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  margin-right: .5rem;
+  border: 2px solid #003164;
+  border-radius: 50%;
+}
+
+button, input {
+	outline: none;
+	display: block;
+	overflow: visible;
+}
+
+/* start */
+
+/* .shareable setting */ 
+.circle-sm {
+  width: .75rem;
+  height: .75rem;
+  border: 1px solid #003164;
+  border-radius: 50%;
+}
+
+.circle-lg {
+  width: 3rem;
+  height: 3rem;
+  border: 2px solid #003164;
+  border-radius: 50%;
+}
+
+.circle-mid {
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 1px solid #003164;
+  border-radius: 50%;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 65% 35%;
+  height: 100vh;
+}
+
+.main-panel {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  flex-flow: column nowrap;
+  justify-content: space-around;
+  padding: 0 5rem;
+  background-color: #FFEDF7;
+}
+
+
+.add-task {
+  position: relative;
+  width: 50%;
+}
+
+.add-task input {
+  width: 100%;
+  height: 2.5rem;
+  padding: 0 20% 0 1rem;
+  font-size: 1rem;
+  border: none;
+  color: #FF4384;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-style: italic;
+}
+
+.add-task input::placeholder {
+  color: #FF4384;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-style: italic;
+}
+
+.add-task input ~ span {
+  position: absolute;
+  bottom: 10%;
+  right: -20%;
+  font-size: 2rem;
+  color: #FF4384;
+}
+
+.activity-task {
+  display: grid;
+  grid-template-areas: "main-decoration header header"
+              "main-decoration sub-decoration none"
+              "main main main";
+  grid-template-rows: 1.5rem 1.5rem 25vh;
+  grid-template-columns: 3rem .75rem auto;
+  grid-column-gap: .75rem;
+  grid-row-gap: .5rem;
+  width: 65%;
+}
+
+.activity-task .main-decoration {
+  grid-area: main-decoration;
+}
+
+.activity-task .sub-decoration {
+  grid-area: sub-decoration;
+  border: 1px solid #FF4384;
+}
+
+.activity-task h3 {
+  grid-area: header;
+  position: relative;
+  font-size: 1.5rem;
+  color: #003164;
+}
+
+.activity-task div {
+  grid-area: main;
+  font-size: 25vh;
+  color: #FF4384;
+  text-align: center;
+  font-weight: 800;
+}
+
+.tasks-group {
+  width: 60%;
+}
+
+.tasks-group ul li {
+  display: grid;
+  grid-template-columns: 1rem auto 1rem;
+  grid-gap: .5rem;
+  padding: .5rem 0;
+  border-bottom: 2px solid rgba(0,49,100,.2);
+}
+
+.tasks-group ul li i {
+  color: #003164;
+}
+
+.tasks-group a {
+  color: #FF4384;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: .5rem;
+}
+
+.sub-panel {
+  background-color: #003164;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  padding: 1.5rem 0;
+}
+
+.sub-panel li i {
+  font-size: 2rem;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.sub-panel .logo {
+  width: 100%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.sub-panel .logo div {
+  color: white;
+  text-align: right;
+  font-size: 1.5rem;
+  font-weight: bold;
+  transform: rotate(90deg);
+   transform-origin: right top;
+}
+
+.sub-panel nav,
+.sub-panel div {
+  width: 80%;
+}
+
+.sub-panel nav ul {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: flex-end;
+}
+
+.sub-panel nav ul li {
+  margin-bottom: 3rem;
+}
+
+.clock {
+  position: absolute;
+  left: calc(65% - 210px);
+  top: calc(50vh - 210px);
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  border: 4px solid #FF4384;
+  background-color: #FF4384;
+}
+
+.clock::before {
+  content: "";
+  position: absolute;
+  top: -20PX;
+  left: -20px;
+  width: 450px;
+  height: 450px;
+  border-radius: 50%;
+  border: 4px solid #FF4384;
+  background-color: transparent;
+}
+
+.clock-btn {
+  position: relative;
+  width: 6rem;
+  height: 6rem;
+  top: calc(50% - 3rem);
+  left: calc(50% - 3rem);
+  text-align: center;
+  background-color: white;
+  border-radius: 50%;
+}
+
+.clock-btn i {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 6rem;
+  font-size: 4rem;
+  color: #FF4384;
+}
+
+.clock-btn::after  {
+  position: absolute;
+  content: "";
+  right: -1.5rem;
+  bottom: 0;
+  width: .75rem;
+  height: .75rem;
+  background-color: white;
 }
