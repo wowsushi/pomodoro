@@ -6,19 +6,20 @@ class TaskGroup extends React.Component {
     let list = []
     let showMore = ''
 
-    if (taskList.length > 4 ) {
-      taskList = taskList.slice(1, 5)
-      showMore = <a href="/">more</a>
+    if (taskList.length > 1 ) {
+      showMore = (taskList.length > 4)? <a href="/">more</a> : ''
+
+      taskList = taskList.slice(1, 4)
+      for (let i=0; i<taskList.length; i++) {
+       list.push(
+          <li key={taskList[i].id}>{taskList[i].task}
+            <i class="material-icons">play_circle_outline</i>
+          </li>     
+        )
+      }
     } 
 
-    for (let i=1; i<taskList.length; i++) {
-     list.push(
-        <li key={taskList[i].id}>{taskList[i].task}
-          <i class="material-icons">play_circle_outline</i>
-        </li>     
-      )
-    }
-  
+
     return (
       <div class="tasks-group">
         <ul>

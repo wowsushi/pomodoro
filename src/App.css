@@ -209,27 +209,26 @@ button, input {
   margin-bottom: 3rem;
 }
 
-.clock {
+.clock-wrapper {
   position: absolute;
-  left: calc(65% - 210px);
-  top: calc(50vh - 210px);
-  width: 420px;
-  height: 420px;
-  border-radius: 50%;
-  border: 4px solid #FF4384;
-  background-color: #FF4384;
-}
-
-.clock::before {
-  content: "";
-  position: absolute;
-  top: -20PX;
-  left: -20px;
+  left: calc(65% - 225px);
+  top: calc(50vh - 225px);
   width: 450px;
   height: 450px;
   border-radius: 50%;
   border: 4px solid #FF4384;
   background-color: transparent;
+}
+
+.clock-main {
+  position: absolute;
+  top: 10PX;
+  left: 10px;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  border: 4px solid #FF4384;
+  background-color: #FF4384;
 }
 
 .clock-btn {
@@ -250,6 +249,8 @@ button, input {
   height: 6rem;
   font-size: 4rem;
   color: #FF4384;
+  cursor: pointer;
+  z-index: 1000;
 }
 
 .clock-btn::after  {
@@ -301,7 +302,7 @@ button, input {
   .add-task {
     width: 80%
   }
-  
+
   .tasks-group {
     width: 100%;
   }
@@ -342,4 +343,13 @@ button, input {
     font-size: 3rem;
   }
 
+}
+
+.main-theme {
+  background-color: white;
+  color: white;
+}
+
+.sub-theme {
+  background-color: #FF4384;
 }
