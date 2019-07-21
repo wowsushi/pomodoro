@@ -12,11 +12,11 @@ function changeTheme(state) {
   const materialIcons = document.querySelector('.clock-btn > .material-icons')
   const clockDecoration = document.querySelector('.clock-decoration')
 
-  clockWrapper.classList.toggle('sub-theme') 
+  clockWrapper.classList.toggle('sub-theme')
   clockMain.classList.toggle('main-theme')
   clockBtn.classList.toggle('sub-theme')
-  materialIcons.innerHTML = 'pause'
-  // materialIcons.classList.toggle('main-theme')
+  materialIcons.innerHTML =  (materialIcons.innerHTML === 'play_arrow') ? 'pause' : 'play_arrow'
+  materialIcons.classList.toggle('main-theme-font')
   clockDecoration.classList.toggle('sub-theme')
 }
 
@@ -45,7 +45,7 @@ class Container extends React.Component {
   handleSubmit(e) {
     e.preventDefault()
     if (!this.state.task) return
-    
+
     const newTask = {
       task: this.state.task,
       id: Date.now()
@@ -84,19 +84,19 @@ class Container extends React.Component {
           <h3>No task? Add one.</h3>
         </div>
       )
-    } 
+    }
 
   return (
     <div class="container">
       <div class="main-panel">
-        <AddTask 
+        <AddTask
           handleChange={this.handleChange}
-          handleSubmit={this.handleSubmit} 
+          handleSubmit={this.handleSubmit}
           changeClockState={this.changeClockState}
           task={this.state.task}
         />
         {showActivityTask}
-        <TaskGroup 
+        <TaskGroup
           taskList={this.state.taskList}
         />
       </div>

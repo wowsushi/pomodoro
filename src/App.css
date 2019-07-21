@@ -37,7 +37,7 @@ button, input {
 
 /* start */
 
-/* .shareable setting */ 
+/* .shareable setting */
 .circle-sm {
   width: .75rem;
   height: .75rem;
@@ -242,7 +242,7 @@ button, input {
   border-radius: 50%;
 }
 
-.clock-btn i {
+.material-icons {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -250,10 +250,9 @@ button, input {
   font-size: 4rem;
   color: #FF4384;
   cursor: pointer;
-  z-index: 1000;
 }
 
-.clock-btn::after  {
+.clock-decoration {
   position: absolute;
   content: "";
   right: -1.5rem;
@@ -285,7 +284,7 @@ button, input {
   }
 
 
-  
+
 }
 
 @media screen and (max-width: 800px) {
@@ -347,6 +346,9 @@ button, input {
 
 .main-theme {
   background-color: white;
+}
+
+.main-theme-font {
   color: white;
 }
 
