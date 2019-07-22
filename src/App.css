@@ -242,7 +242,7 @@ button, input {
   border-radius: 50%;
 }
 
-.material-icons {
+.clock-icon {
   display: flex;
   justify-content: center;
   align-items: center;

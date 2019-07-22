@@ -7,7 +7,7 @@ class Clock extends React.Component {
     <div class="clock-wrapper">
       <div class="clock-main">
         <div class="clock-btn" onClick={this.props.changeClockState}>
-          <i class="material-icons">play_arrow</i>
+          <i class="material-icons clock-icon">play_arrow</i>
           <span class="clock-decoration"></span>
         </div>
       </div>
