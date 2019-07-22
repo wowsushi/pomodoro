@@ -4,7 +4,6 @@ import AddTask from './AddTask.js'
 import TaskGroup from './TaskGroup.js'
 import Clock from './Clock.js'
 
-
 function changeTheme(state) {
   const clockWrapper = document.querySelector('.clock-wrapper')
   const clockMain = document.querySelector('.clock-main')
@@ -26,7 +25,7 @@ class Container extends React.Component {
     this.state={
       task: '',
       taskList: [],
-      activiting: false,
+      activating: false,
       resting: false,
       countDown: 1500
     }
@@ -58,24 +57,40 @@ class Container extends React.Component {
     }))
   }
 
+  countDown() {
+    this.setState(state => ({
+      countDown: state.countDown - 1
+    }));
+  }
+
   changeClockState(e) {
-    if (this.state.activiting || this.state.resting) {
+
+    if (this.state.activating || this.state.resting) {
       // pause
+      clearInterval(this.interval);
+
     } else {
-      // activiting
-      changeTheme()
+      // activating
+      this.interval = setInterval(() => this.countDown(), 1000);
+
     }
+    this.setState({ activating: !this.state.activating })
+    changeTheme()
   }
 
   render() {
+    const { taskList, countDown } = this.state
+
     let showActivityTask = []
-    if (this.state.taskList.length > 0) {
+    if (taskList.length > 0) {
       showActivityTask.push(
         <div class="activity-task" key={Date.now()}>
           <span class="circle-lg main-decoration"></span>
-          <h3>{this.state.taskList[0].task}</h3>
+          <h3>{taskList[0].task}</h3>
           <span class="circle-sm sub-decoration"></span>
-          <div>25:00</div>
+          <div>{ Math.floor(countDown / 60).toString().padStart(2, '0') }
+                :{ (countDown % 60).toString().padStart(2, '0')}
+          </div>
         </div>
       )
     } else {
@@ -97,7 +112,7 @@ class Container extends React.Component {
         />
         {showActivityTask}
         <TaskGroup
-          taskList={this.state.taskList}
+          taskList={taskList}
         />
       </div>
       <div class="sub-panel">
