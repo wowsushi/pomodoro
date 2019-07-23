@@ -59,6 +59,10 @@ button, input {
   border-radius: 50%;
 }
 
+.material-icons {
+  cursor: pointer;
+}
+
 .container {
   display: grid;
   grid-template-columns: 65% 35%;

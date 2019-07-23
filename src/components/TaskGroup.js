@@ -1,8 +1,9 @@
 import React from 'react'
 
 class TaskGroup extends React.Component {
+
   render() {
-    let { taskList }  = this.props
+    let { taskList, selectTask }  = this.props
     let list = []
     let showMore = ''
 
@@ -12,12 +13,12 @@ class TaskGroup extends React.Component {
       taskList = taskList.slice(1, 4)
       for (let i=0; i<taskList.length; i++) {
        list.push(
-          <li key={taskList[i].id}>{taskList[i].task}
+          <li key={taskList[i].id} onClick={selectTask.bind(this, taskList[i].id, this.e )}>{taskList[i].task}
             <i class="material-icons">play_circle_outline</i>
-          </li>     
+          </li>
         )
       }
-    } 
+    }
 
 
     return (

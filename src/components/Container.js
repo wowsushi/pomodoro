@@ -32,6 +32,7 @@ class Container extends React.Component {
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.changeClockState = this.changeClockState.bind(this)
+    this.selectTask = this.selectTask.bind(this)
   }
 
   handleChange(e) {
@@ -78,6 +79,22 @@ class Container extends React.Component {
     changeTheme()
   }
 
+  selectTask(id, e) {
+    let { taskList } = this.state
+
+    taskList.forEach((task, index) => {
+      if (task.id === id) {
+        taskList.unshift(...taskList.splice(index, 1))
+
+        this.setState({ countDown: 1500 })
+
+        if (this.state.activating) {
+          this.changeClockState(e)
+        }
+      }
+    })
+  }
+
   render() {
     const { taskList, countDown } = this.state
 
@@ -93,12 +110,15 @@ class Container extends React.Component {
           </div>
         </div>
       )
+      this.clock = <Clock changeClockState={this.changeClockState}/>
     } else {
       showActivityTask.push(
         <div class="activity-task" key={Date.now()}>
           <h3>No task? Add one.</h3>
         </div>
       )
+
+      this.clock = ""
     }
 
   return (
@@ -113,6 +133,7 @@ class Container extends React.Component {
         {showActivityTask}
         <TaskGroup
           taskList={taskList}
+          selectTask={this.selectTask}
         />
       </div>
       <div class="sub-panel">
@@ -135,7 +156,7 @@ class Container extends React.Component {
           <div>pomodoro</div>
         </div>
       </div>
-      <Clock changeClockState={this.changeClockState}/>
+      {this.clock}
     </div>
   )}
 }
