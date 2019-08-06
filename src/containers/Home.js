@@ -1,8 +1,9 @@
 import React from 'react'
+import { HashRouter, Link } from 'react-router-dom'
 
-import AddTask from './AddTask.js'
-import TaskGroup from './TaskGroup.js'
-import Clock from './Clock.js'
+import AddTask from '../components/AddTask.js'
+import TaskGroup from '../components/TaskGroup.js'
+import Clock from '../components/Clock.js'
 
 function changeTheme(state) {
   const clockWrapper = document.querySelector('.clock-wrapper')
@@ -19,7 +20,7 @@ function changeTheme(state) {
   clockDecoration.classList.toggle('sub-theme')
 }
 
-class Container extends React.Component {
+class Home extends React.Component {
   constructor(props) {
     super(props)
     this.state={
@@ -137,21 +138,29 @@ class Container extends React.Component {
         />
       </div>
       <div class="sub-panel">
-        <nav class="nav">
-          <ul>
-            <li class="to-do-list-folded">
-              <i class="material-icons">list</i>
-            </li>
+        <HashRouter>
+          <nav class="nav">
+            <ul>
+              <li class="to-do-list-folded">
+                <Link to="/todos">
+                  <i class="material-icons">list</i>
+                </Link>
+              </li>
 
-            <li class="analytics">
-              <i class="material-icons">insert_chart</i>
-            </li>
+              <li class="analytics">
+                <Link to="/analytics">
+                  <i class="material-icons">insert_chart</i>
+                </Link>
+              </li>
 
-            <li class="ringtones">
-              <i class="material-icons">library_music</i>
-            </li>
-          </ul>
-        </nav>
+              <li class="ringtones">
+                <Link to="/ringtones">
+                  <i class="material-icons">library_music</i>
+                </Link>
+              </li>
+            </ul>
+          </nav>
+        </HashRouter>
         <div class="logo">
           <div>pomodoro</div>
         </div>
@@ -161,4 +170,4 @@ class Container extends React.Component {
   )}
 }
 
-export default Container
+export default Home;

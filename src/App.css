@@ -359,3 +359,10 @@ button, input {
 .sub-theme {
   background-color: #FF4384;
 }
+
+/* todos page */
+.todos {
+  width: 100vw;
+  height: 100vh;
+  background: #003164;
+}
