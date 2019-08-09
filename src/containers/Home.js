@@ -41,7 +41,7 @@ class Home extends React.Component {
     }
 
   return (
-    <div class="container">
+    <div class="home">
       <div class="main-panel">
         <AddTask
           handleChange={this.props.handleChange}
@@ -53,6 +53,7 @@ class Home extends React.Component {
         <TaskGroup
           taskList={taskList}
           selectTask={this.props.selectTask}
+          page='home'
         />
       </div>
       <div class="sub-panel">

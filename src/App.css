@@ -3,7 +3,7 @@
   margin: 0;
   padding: 0;
   font-family: 'Roboto', 'Futura';
-  font-size: 16px;
+  box-sizing: border-box;
 }
 
 body {
@@ -25,7 +25,6 @@ li:before {
   width: 1rem;
   height: 1rem;
   margin-right: .5rem;
-  border: 2px solid #003164;
   border-radius: 50%;
 }
 
@@ -35,6 +34,15 @@ button, input {
 	overflow: visible;
 }
 
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 3px;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.20);
+}
 /* start */
 
 /* .shareable setting */
@@ -63,7 +71,7 @@ button, input {
   cursor: pointer;
 }
 
-.container {
+.home {
   display: grid;
   grid-template-columns: 65% 35%;
   height: 100vh;
@@ -77,14 +85,14 @@ button, input {
 }
 
 
-.add-task {
+.main-panel .add-task {
   position: relative;
   width: 50%;
 }
 
 .add-task input {
   width: 100%;
-  height: 2.5rem;
+  height: 3.5rem;
   padding: 0 20% 0 1rem;
   color: #FF4384;
   font-size: 1rem;
@@ -103,8 +111,8 @@ button, input {
 
 .add-task input ~ button {
   position: absolute;
-  top: 0;
-  right: -20%;
+  top: 7px;
+  right: 5%;
   border: none;
   background-color: transparent;
   color: #FF4384;
@@ -147,22 +155,46 @@ button, input {
   font-weight: 800;
 }
 
-.tasks-group {
+.tasks-group-home {
   width: 60%;
+}
+
+.tasks-group-todos {
+  width: 100%;
+}
+
+.tasks-group-home ul li,
+.tasks-group-home i {
+  color: #003164;
+}
+
+.tasks-group-home ul li {
+  border-bottom: 2px solid rgba(0,49,100,.2);
+}
+
+.tasks-group-todos ul li,
+.tasks-group-todos i {
+  color: white;
+}
+
+.tasks-group-todos ul li {
+  border-bottom: 2px solid rgba(255,255,255,.2);
 }
 
 .tasks-group ul li {
   display: grid;
-  grid-template-columns: 1rem auto 1rem;
-  grid-gap: .5rem;
+  grid-template-columns: 1rem auto 2rem;
+  grid-gap: 1rem;
   padding: .5rem 0;
-  border-bottom: 2px solid rgba(0,49,100,.2);
-  color: #003164;
   font-weight: bold;
 }
 
-.tasks-group ul li i {
-  color: #003164;
+.tasks-group-home li:before {
+  border: 2px solid #003164;
+}
+
+.tasks-group-todos li:before {
+  border: 2px solid white;
 }
 
 .tasks-group a {
@@ -180,19 +212,29 @@ button, input {
   padding: 3rem 0;
 }
 
-.sub-panel li i {
+.sub-panel li i,
+.todos aside i {
   color: white;
   font-size: 2rem;
+}
+
+.sub-panel li i,{
+  font-size: 2rem;
+}
+
+.todos aside i {
+  font-size: 4rem;
 }
 
 .sub-panel .logo {
   width: 100%;
 }
 
-.sub-panel .logo div {
+.sub-panel .logo div,
+.todos .logo div {
   color: white;
   text-align: right;
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: bold;
   transform: rotate(90deg);
   transform-origin: right top;
@@ -292,7 +334,7 @@ button, input {
 }
 
 @media screen and (max-width: 800px) {
-  .container {
+  .home {
     display: flex;
     flex-flow: column nowrap;
     height: 100vh;
@@ -362,7 +404,151 @@ button, input {
 
 /* todos page */
 .todos {
-  width: 100vw;
+  display: grid;
+  grid-template-columns: 1fr 35% 0.5fr;
+  width: 100%;
   height: 100vh;
+  padding: 3rem 6.25%;
   background: #003164;
 }
+
+.todos nav ul {
+  display: grid;
+  grid-gap: 2.6rem;
+}
+
+.todos nav a,
+.todos nav i {
+  font-size: 2.25rem;
+  color: rgba(255, 255, 255, 0.20);
+}
+
+.todos nav a {
+  font-weight: bold;
+}
+
+
+.todos nav i {
+  margin-right: 1rem;
+}
+
+.todos nav a:hover,
+.todos nav a:hover i {
+  color: #FF4384;
+}
+
+.todos > section:nth-of-type(1) {
+  height: 100%;
+
+}
+
+.todos > section:nth-of-type(2) {
+  display: grid;
+  grid-template-rows: 10% 1fr 1fr;
+  grid-gap: 3rem;
+  overflow: hidden;
+}
+
+.todos h2,
+.todos h2 i {
+  color: white;
+}
+
+.todos h2 {
+  position: relative;
+  padding: .5rem 1rem;
+  margin-bottom: 1.25rem;
+  background: rgba(255, 255, 255, 0.20);
+}
+
+.todos h2 i {
+  position: absolute;
+  top: 0;
+  right: 1rem;
+  padding: .5rem 1rem;
+}
+
+.todos .add-task {
+  position: relative;
+  width: 100%;
+}
+
+.todos .todo-list ul,
+.todos .done-list ul {
+  height: 28vh;
+  padding-right: .5rem;
+  overflow-y: scroll;
+}
+
+.todos aside {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.clockSm-main {
+    position: absolute;
+    bottom: 0;
+    width: 350px;
+    height: 175px;
+    background: #FFEDF7;
+    border-top-left-radius: 175px;
+    border-top-right-radius: 175px;
+}
+
+.clockSm-btn {
+  position: absolute;
+  background: #003164;
+  border-radius: 50%;
+  width: 116px;
+  height: 116px;
+  left: calc(50% - 58px);
+  top: -58px;
+}
+
+.clockSm-btn-inner {
+  position: relative;
+  background: #FF4384;
+  border-radius: 50%;
+  height: 96px;
+  width: 96px;
+  margin: 0 auto;
+}
+
+.clockSm-btn:before {
+  content: '';
+  position: absolute;
+  background: #003164;
+  border: 2px #FF4384 solid;
+  border-radius: 50%;
+  height: 105px;
+  width: 105px;
+  margin: 0 auto;
+  left: calc(50% - 55px);
+  top: calc(50% - 64px);
+}
+
+.clockSm-btn-inner i {
+  color: #FFEDF7;
+}
+
+.clockSm-main .content {
+  position: relative;
+  top: 35%;
+  text-align: center;
+  color: #FF4384;
+}
+
+.clockSm-main h1 {
+  font-size: 4rem;
+}
+
+.clockSm-main p {
+  color:  #003164;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+
+

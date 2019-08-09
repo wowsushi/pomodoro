@@ -39,13 +39,15 @@ class App extends React.Component {
 
     const newTask = {
       task: this.state.task,
-      id: Date.now()
+      id: Date.now(),
+      done: false
     }
 
     this.setState(prevState => ({
       taskList: prevState.taskList.concat(newTask),
       task: '',
-      id: ''
+      id: '',
+      done: ''
     }))
   }
 
@@ -129,7 +131,20 @@ class App extends React.Component {
           )}
 
         />
-        <Route path="/todos" component={Todos} />
+        <Route path="/todos" render={(props) => (
+          <Todos
+            handleChange={this.handleChange}
+            handleSubmit={this.handleSubmit}
+            countDown={this.countDown}
+            changeClockState={this.changeClockState}
+            selectTask={this.selectTask}
+            task={task}
+            taskList={taskList}
+            activating={activating}
+            resting={resting}
+            count={count}
+          />
+        )} />
         <Route path="/analytics" component={Analytics} />
         <Route path="/ringtones" component={Ringtones} />
       </HashRouter>
