@@ -30,8 +30,6 @@ li:before {
 
 button, input {
 	outline: none;
-	display: block;
-	overflow: visible;
 }
 
 ::-webkit-scrollbar {
@@ -213,7 +211,7 @@ button, input {
 }
 
 .sub-panel li i,
-.todos aside i {
+.details aside i {
   color: white;
   font-size: 2rem;
 }
@@ -222,7 +220,7 @@ button, input {
   font-size: 2rem;
 }
 
-.todos aside i {
+.details aside i {
   font-size: 4rem;
 }
 
@@ -231,7 +229,7 @@ button, input {
 }
 
 .sub-panel .logo div,
-.todos .logo div {
+.details .logo div {
   color: white;
   text-align: right;
   font-size: 2rem;
@@ -402,8 +400,9 @@ button, input {
   background-color: #FF4384;
 }
 
+
 /* todos page */
-.todos {
+.details {
   display: grid;
   grid-template-columns: 1fr 35% 0.5fr;
   width: 100%;
@@ -412,75 +411,88 @@ button, input {
   background: #003164;
 }
 
-.todos nav ul {
+.details nav ul {
   display: grid;
   grid-gap: 2.6rem;
 }
 
-.todos nav a,
-.todos nav i {
+.details nav a,
+.details nav i {
   font-size: 2.25rem;
   color: rgba(255, 255, 255, 0.20);
 }
 
-.todos nav a {
+.details nav a {
   font-weight: bold;
 }
 
 
-.todos nav i {
+.details nav i {
   margin-right: 1rem;
 }
 
-.todos nav a:hover,
-.todos nav a:hover i {
+.details nav a:hover,
+.details nav a:hover i {
   color: #FF4384;
 }
 
-.todos > section:nth-of-type(1) {
+.details > section:nth-of-type(1) {
   height: 100%;
 
 }
 
-.todos > section:nth-of-type(2) {
+.details > section:nth-of-type(2) {
   display: grid;
-  grid-template-rows: 10% 1fr 1fr;
   grid-gap: 3rem;
   overflow: hidden;
 }
 
-.todos h2,
-.todos h2 i {
+.details > .todos {
+  grid-template-rows: 10% 1fr 1fr;
+}
+
+.details > .analytics {
+  grid-template-rows: .2fr .8fr;
+}
+
+.details h2,
+.details h2 i {
   color: white;
 }
 
-.todos h2 {
+.details h2 {
   position: relative;
   padding: .5rem 1rem;
   margin-bottom: 1.25rem;
   background: rgba(255, 255, 255, 0.20);
 }
 
-.todos h2 i {
+.details h2 i {
   position: absolute;
   top: 0;
   right: 1rem;
   padding: .5rem 1rem;
 }
 
-.todos .add-task {
+.details h2 span {
+  font-size: 1rem;
+  position: absolute;
+  right: 0;
+  padding: 0.3rem 1rem;
+}
+
+.details .add-task {
   position: relative;
   width: 100%;
 }
 
-.todos .todo-list ul,
-.todos .done-list ul {
+.details div ul {
   height: 28vh;
   padding-right: .5rem;
   overflow-y: scroll;
 }
 
-.todos aside {
+.details aside {
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-between;
@@ -550,5 +562,59 @@ button, input {
   font-size: 1rem;
 }
 
+.select-bookMark {
+  color: #FF4384!important;
+}
 
+.analytics-content {
+  display: flex;
+  justify-content: space-between;
+  height: 30%;
+}
+
+.analytics-content h3 {
+  color: white;
+}
+
+.analytics-content p {
+  color: rgba(255, 255, 255, 0.20);
+}
+
+.analytics-content span {
+  color: #FF4384;
+  font-size: 4rem;
+  font-weight: bold;
+}
+
+.ringtones ul {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.ringtones label {
+  color: white;
+  margin-left: .5rem;
+}
+
+input[type="radio"] {
+  display:none;
+}
+
+input[type="radio"] + label {
+  cursor: pointer;
+}
+
+input[type="radio"] + label span {
+  display:inline-block;
+  width:19px;
+  height:19px;
+  margin:-2px 10px 0 0;
+  vertical-align:middle;
+  background:url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/check_radio_sheet.png) -38px top no-repeat;
+  cursor:pointer;
+}
+
+input[type="radio"]:checked + label span {
+  background:url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/check_radio_sheet.png) -57px top no-repeat;
+}
 

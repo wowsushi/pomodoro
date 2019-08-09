@@ -3,11 +3,7 @@ import { HashRouter, Route } from 'react-router-dom'
 
 import './App.css';
 import Home from './containers/Home.js'
-import Todos from './containers/Todos.js'
-import Analytics from './containers/Analytics.js'
-import Ringtones from './containers/Ringtones.js'
-
-
+import Details from './containers/Details.js'
 
 class App extends React.Component {
   constructor(props) {
@@ -127,26 +123,65 @@ class App extends React.Component {
               activating={activating}
               resting={resting}
               count={count}
+              match={props.match}
             />
           )}
 
         />
-        <Route path="/todos" render={(props) => (
-          <Todos
-            handleChange={this.handleChange}
-            handleSubmit={this.handleSubmit}
-            countDown={this.countDown}
-            changeClockState={this.changeClockState}
-            selectTask={this.selectTask}
-            task={task}
-            taskList={taskList}
-            activating={activating}
-            resting={resting}
-            count={count}
-          />
-        )} />
-        <Route path="/analytics" component={Analytics} />
-        <Route path="/ringtones" component={Ringtones} />
+        <Route
+          path="/todos"
+          render={(props) => (
+            <Details
+              handleChange={this.handleChange}
+              handleSubmit={this.handleSubmit}
+              countDown={this.countDown}
+              changeClockState={this.changeClockState}
+              selectTask={this.selectTask}
+              task={task}
+              taskList={taskList}
+              activating={activating}
+              resting={resting}
+              count={count}
+              match={props.match}
+            />
+          )}
+        />
+        <Route
+          path="/analytics"
+          render={(props) => (
+            <Details
+              handleChange={this.handleChange}
+              handleSubmit={this.handleSubmit}
+              countDown={this.countDown}
+              changeClockState={this.changeClockState}
+              selectTask={this.selectTask}
+              task={task}
+              taskList={taskList}
+              activating={activating}
+              resting={resting}
+              count={count}
+              match={props.match}
+            />
+          )}
+        />
+        <Route
+          path="/ringtones"
+          render={(props) => (
+            <Details
+              handleChange={this.handleChange}
+              handleSubmit={this.handleSubmit}
+              countDown={this.countDown}
+              changeClockState={this.changeClockState}
+              selectTask={this.selectTask}
+              task={task}
+              taskList={taskList}
+              activating={activating}
+              resting={resting}
+              count={count}
+              match={props.match}
+            />
+          )}
+        />
       </HashRouter>
     )
   }

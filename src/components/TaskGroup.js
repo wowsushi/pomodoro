@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 class TaskGroup extends React.Component {
   constructor(props) {
@@ -13,7 +14,7 @@ class TaskGroup extends React.Component {
     switch (page) {
       case 'home':
         if (taskList.length > 1 ) {
-          showMore = (taskList.length > 4)? <a href="/">more</a> : ''
+          showMore = (taskList.length > 4)? <Link to="todos">more</Link> : ''
 
           taskList = taskList.slice(1, 4)
           for (let i=0; i<taskList.length; i++) {
@@ -43,7 +44,7 @@ class TaskGroup extends React.Component {
         <ul>
           {list}
         </ul>
-        {showMore}
+          {showMore}
       </div>
     )
   }

@@ -60,23 +60,23 @@ class Home extends React.Component {
         <HashRouter>
           <nav class="nav">
             <ul>
-              <li class="to-do-list-folded">
-                <Link to="/todos">
-                  <i class="material-icons">list</i>
-                </Link>
-              </li>
+              <Link to="/todos">
+                <li class="to-do-list-folded">
+                    <i class="material-icons">list</i>
+                </li>
+             </Link>
 
-              <li class="analytics">
-                <Link to="/analytics">
-                  <i class="material-icons">insert_chart</i>
-                </Link>
-              </li>
+              <Link to="/analytics">
+                <li class="analytics">
+                    <i class="material-icons">insert_chart</i>
+                </li>
+              </Link>
 
-              <li class="ringtones">
-                <Link to="/ringtones">
-                  <i class="material-icons">library_music</i>
-                </Link>
-              </li>
+              <Link to="/ringtones">
+                <li class="ringtones">
+                    <i class="material-icons">library_music</i>
+                </li>
+              </Link>
             </ul>
           </nav>
         </HashRouter>
