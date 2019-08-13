@@ -4,22 +4,22 @@ const radios = [
   'none',
   'default',
   'alarm',
-  'alert',
+  'happy',
   'beep',
   'bell',
-  'bird',
-  'bugle',
+  'funk',
+  'drama',
   'digital',
   'drop',
   'horn',
   'music',
   'ring',
-  'warning',
+  'gong',
   'whistle'
 ]
 
 function Ringtones (props) {
-
+  console.log('props', props)
   return (
       <section class="ringtones">
         <div>
@@ -27,9 +27,14 @@ function Ringtones (props) {
           <ul>
             { radios.map(radio => {
               return (
-                <li>
-                  <input id={`${radio}-work`} type="radio" name="work" value={`${radio}-work`}/>
-                  <label for={`${radio}-work`}><span></span>{radio}</label>
+                <li >
+                  <input id={`${radio}-work`} type="radio" name="work" value={`${radio}-work`} />
+                  <label for={`${radio}-work`} onClick={props.playSound.bind(this, radio)}><span></span>{radio}</label>
+                  { (props.playing === radio)?
+                      <audio src={`./sound_effect/${radio}.mp3`} autoplay="true">
+                        <h3>遇到不支援的瀏覽器會出現這行字</h3>
+                      </audio>
+                   : ''}
                 </li>
               )
             })}
@@ -40,9 +45,14 @@ function Ringtones (props) {
           <ul>
             { radios.map(radio => {
               return (
-                <li>
+                <li >
                   <input id={`${radio}-break`} type="radio" name="break" value={`${radio}-break`}/>
-                  <label for={`${radio}-break`}><span></span>{radio}</label>
+                  <label for={`${radio}-break`} onClick={props.playSound.bind(this, radio)}><span></span>{radio}</label>
+                  { (props.playing === radio)?
+                      <audio src={`./sound_effect/${radio}.mp3`} autoplay="true">
+                        <h3>遇到不支援的瀏覽器會出現這行字</h3>
+                      </audio>
+                   : ''}
                 </li>
               )
             })}

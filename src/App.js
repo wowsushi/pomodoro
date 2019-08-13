@@ -13,12 +13,14 @@ class App extends React.Component {
       taskList: [],
       activating: false,
       resting: false,
-      count: 1500
+      count: 1500,
+      playing: ''
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.changeClockState = this.changeClockState.bind(this)
     this.selectTask = this.selectTask.bind(this)
+    this.playSound = this.playSound.bind(this)
   }
 
   handleChange(e) {
@@ -26,7 +28,6 @@ class App extends React.Component {
     this.setState({
       task: value
     })
-    console.log('tartet', e.target)
   }
 
   handleSubmit(e) {
@@ -100,12 +101,20 @@ class App extends React.Component {
     console.log('changed')
   }
 
+  playSound(radio, e) {
+    this.setState({
+      playing: radio
+    })
+  }
+
   render () {
     const { task,
             taskList,
             activating,
             resting,
-            count } = this.state
+            count,
+            playing
+         } = this.state
 
     return (
       <HashRouter>
@@ -173,6 +182,8 @@ class App extends React.Component {
               countDown={this.countDown}
               changeClockState={this.changeClockState}
               selectTask={this.selectTask}
+              playSound={this.playSound}
+              playing={playing}
               task={task}
               taskList={taskList}
               activating={activating}

@@ -10,7 +10,7 @@ import Ringtones from '../components/Ringtones.js'
 class Details extends React.Component {
 
   render() {
-    const { count, taskList, match, task, activating,resting, handleChange, handleSubmit, countDown,selectTask } = this.props
+    const { count, taskList, match, task, activating,resting, handleChange, handleSubmit, countDown,selectTask, playSound, playing } = this.props
 
     return (
       <main className="details">
@@ -63,7 +63,9 @@ class Details extends React.Component {
             component={Analytics}
           />
           <Route path="/ringtones"
-           component={Ringtones}
+            render={(props) => (
+              <Ringtones playing={playing} playSound={playSound}/>
+            )}
           />
 
         </HashRouter>

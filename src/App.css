@@ -601,20 +601,34 @@ input[type="radio"] {
 }
 
 input[type="radio"] + label {
+  position: relative;
   cursor: pointer;
 }
 
 input[type="radio"] + label span {
-  display:inline-block;
-  width:19px;
-  height:19px;
-  margin:-2px 10px 0 0;
-  vertical-align:middle;
-  background:url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/check_radio_sheet.png) -38px top no-repeat;
-  cursor:pointer;
+  position: absolute;
+  width: 1.2rem;
+  height: 1.2rem;
+  left: -1.8rem;
+  border: 2px white solid;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all .1s ease-in-out;
 }
 
 input[type="radio"]:checked + label span {
-  background:url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/check_radio_sheet.png) -57px top no-repeat;
+  border: 2px #FF4384 solid;
+}
+
+input[type="radio"]:checked + label:after {
+  content: '';
+  position: absolute;
+  width: 1.2rem;
+  height: 1.2rem;
+  left: -1.8rem;
+  background: #FF4384;
+  border-radius: 50%;
+  cursor: pointer;
+  transform: scale(0.5);
 }
 
