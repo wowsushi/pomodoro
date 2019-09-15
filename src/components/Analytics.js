@@ -2,8 +2,10 @@ import React from 'react'
 import { Bar } from 'react-chartjs-2'
 
 function Analytics (props) {
+  const isResting = props.resting? "#00A7FF" : "#FF4384"
+  console.log(props.resting)
   return (
-      <section class="analytics">
+      <section className="analytics">
         <div>
           <h2>focus time</h2>
           <div className="analytics-content">
@@ -34,7 +36,7 @@ function Analytics (props) {
                       'white',
                       'white',
                       'white',
-                      '#FF4384',
+                      isResting,
                   ]
               }]
             }}

@@ -10,7 +10,17 @@ class App extends React.Component {
     super(props)
     this.state={
       task: '',
-      taskList: [],
+      taskList: [
+        {
+          task: 'example 1',
+          id: '1',
+          done: false
+        }, {
+          task: 'example 2',
+          id: '2',
+          done: true
+        }
+      ],
       activating: false,
       resting: false,
       count: 1500,
@@ -49,14 +59,28 @@ class App extends React.Component {
   }
 
   countDown() {
-    this.setState(state => ({
-      count: state.count - 1
-    }));
+    if (this.state.count === 0 && !this.state.resting) {
+      this.setState({ resting: true, count: 300})
+      //chang primary color to blue
+      document.documentElement.style.setProperty('--primaryColor', '#00A7FF')
+
+    } else if (this.state.count === 0 && this.state.resting) {
+      let newTaskList = {...this.state.taskList}
+      newTaskList[0].done = true
+      this.setState({ resting: false, activating: false, count: 1500})
+      clearInterval(this.interval)
+      // change primary color to red
+      document.documentElement.style.setProperty('--primaryColor', '#FF4384')
+
+    } else if (this.state.activating) {
+      this.setState(state => ({
+        count: state.count - 1
+      }));
+    }
   }
 
   changeClockState(e) {
-
-    if (this.state.activating || this.state.resting) {
+    if (this.state.activating) {
       // pause
       clearInterval(this.interval);
 
@@ -66,7 +90,6 @@ class App extends React.Component {
 
     }
     this.setState({ activating: !this.state.activating })
-    this.changeTheme()
   }
 
   selectTask(id, e) {
@@ -83,22 +106,6 @@ class App extends React.Component {
         }
       }
     })
-  }
-
-  changeTheme(state) {
-    const clockWrapper = document.querySelector('.clock-wrapper')
-    const clockMain = document.querySelector('.clock-main')
-    const clockBtn = document.querySelector('.clock-btn')
-    const materialIcons = document.querySelector('.clock-btn > .material-icons')
-    const clockDecoration = document.querySelector('.clock-decoration')
-
-    clockWrapper.classList.toggle('sub-theme')
-    clockMain.classList.toggle('main-theme')
-    clockBtn.classList.toggle('sub-theme')
-    materialIcons.innerHTML =  (materialIcons.innerHTML === 'play_arrow') ? 'pause' : 'play_arrow'
-    materialIcons.classList.toggle('main-theme-font')
-    clockDecoration.classList.toggle('sub-theme')
-    console.log('changed')
   }
 
   playSound(radio, e) {
@@ -128,7 +135,9 @@ class App extends React.Component {
               changeClockState={this.changeClockState}
               selectTask={this.selectTask}
               task={task}
-              taskList={taskList}
+              taskList={taskList.filter(task => {
+                return task.done === false
+              })}
               activating={activating}
               resting={resting}
               count={count}

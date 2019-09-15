@@ -10,36 +10,56 @@ import Ringtones from '../components/Ringtones.js'
 class Details extends React.Component {
 
   render() {
-    const { count, taskList, match, task, activating,resting, handleChange, handleSubmit, countDown,selectTask, playSound, playing } = this.props
+    const {
+      count,
+      taskList,
+      match,
+      task,
+      activating,
+      resting,
+      handleChange,
+      handleSubmit,
+      countDown,
+      selectTask,
+      playSound,
+      playing
+    } = this.props
 
     return (
-      <main className="details">
+      <main className="details resting">
         <section>
-          <nav class="menu">
+          <nav className="menu">
             <ul>
               <li>
-                <Link to="/todos" class={(match.path==='/todos')? 'select-bookMark' : ''}>
-                  <i class={match.path==='/todos'? 'select-bookMark material-icons' : 'material-icons'}>list</i>
+                <Link to="/todos" className={(match.path==='/todos')? 'select-bookMark' : ''}>
+                  <i className={match.path==='/todos'? 'select-bookMark material-icons' : 'material-icons'}>list</i>
                   to - do list
                 </Link>
               </li>
 
-              <li class="analytics">
-                <Link to="/analytics" class={(match.path==='/analytics')? 'select-bookMark' : ''}>
-                  <i class={match.path==='/analytics'? 'select-bookMark material-icons' : 'material-icons'}>insert_chart</i>
+              <li className="analytics">
+                <Link to="/analytics" className={(match.path==='/analytics')? 'select-bookMark' : ''}>
+                  <i className={match.path==='/analytics'? 'select-bookMark material-icons' : 'material-icons'}>insert_chart</i>
                   analytics
                 </Link>
               </li>
 
-              <li class="ringtones">
-                <Link to="/ringtones" class={(match.path==='/ringtones')? 'select-bookMark' : ''}>
-                  <i class={match.path==='/ringtones'? 'select-bookMark material-icons' : 'material-icons'}>library_music</i>
+              <li className="ringtones">
+                <Link to="/ringtones" className={(match.path==='/ringtones')? 'select-bookMark' : ''}>
+                  <i className={match.path==='/ringtones'? 'select-bookMark material-icons' : 'material-icons'}>library_music</i>
                   ringtones
                 </Link>
               </li>
             </ul>
           </nav>
-          <ClockSm count={count} taskList={taskList} changeClockState={this.props.changeClockState}/>
+          <ClockSm
+            count={count}
+            taskList={taskList.filter(task => {
+              return !task.done
+            })}
+            changeClockState={this.props.changeClockState}
+            activating={activating}
+          />
         </section>
         <HashRouter>
           <Route
@@ -59,8 +79,11 @@ class Details extends React.Component {
               />
             )}
           />
-          <Route path="/analytics"
-            component={Analytics}
+          <Route
+            path="/analytics"
+            render={props => (
+              <Analytics resting={resting} />
+            )}
           />
           <Route path="/ringtones"
             render={(props) => (
@@ -72,11 +95,11 @@ class Details extends React.Component {
 
         <aside>
           <Link to="/">
-            <i class="material-icons">
+            <i className="material-icons">
               cancel
             </i>
           </Link>
-          <div class="logo">
+          <div className="logo">
             <div>pomodoro</div>
           </div>
         </aside>

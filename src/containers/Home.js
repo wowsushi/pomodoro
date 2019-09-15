@@ -6,33 +6,29 @@ import TaskGroup from '../components/TaskGroup.js'
 import Clock from '../components/Clock.js'
 
 class Home extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state={
-
-    }
-  }
-
   render() {
-    console.log(this.props)
-    const { taskList, count } = this.props
+    const { taskList, count, activating, resting } = this.props
 
     let showActivityTask = []
     if (taskList.length > 0) {
       showActivityTask.push(
-        <div class="activity-task" key={Date.now()}>
-          <span class="circle-lg main-decoration"></span>
+        <div className="activity-task" key={Date.now()}>
+          <span className="circle-lg main-decoration"></span>
           <h3>{taskList[0].task}</h3>
-          <span class="circle-sm sub-decoration"></span>
+          <span className="circle-sm sub-decoration"></span>
           <div>{ Math.floor(count / 60).toString().padStart(2, '0') }
                 :{ (count % 60).toString().padStart(2, '0')}
           </div>
         </div>
       )
-      this.clock = <Clock changeClockState={this.props.changeClockState}/>
+      this.clock =
+        <Clock
+          changeClockState={this.props.changeClockState}
+          activating={activating}
+        />
     } else {
       showActivityTask.push(
-        <div class="activity-task" key={Date.now()}>
+        <div className="activity-task" key={Date.now()}>
           <h3>No task? Add one.</h3>
         </div>
       )
@@ -41,8 +37,8 @@ class Home extends React.Component {
     }
 
   return (
-    <div class="home">
-      <div class="main-panel">
+    <div className={resting? "home resting" : "home"}>
+      <div className="main-panel">
         <AddTask
           handleChange={this.props.handleChange}
           handleSubmit={this.props.handleSubmit}
@@ -51,36 +47,38 @@ class Home extends React.Component {
         />
         {showActivityTask}
         <TaskGroup
-          taskList={taskList}
+          taskList={taskList.filter(task => {
+            return !task.done
+          })}
           selectTask={this.props.selectTask}
           page='home'
         />
       </div>
-      <div class="sub-panel">
+      <div className="sub-panel">
         <HashRouter>
-          <nav class="nav">
+          <nav className="nav">
             <ul>
               <Link to="/todos">
-                <li class="to-do-list-folded">
-                    <i class="material-icons">list</i>
+                <li className="to-do-list-folded">
+                    <i className="material-icons">list</i>
                 </li>
              </Link>
 
               <Link to="/analytics">
-                <li class="analytics">
-                    <i class="material-icons">insert_chart</i>
+                <li className="analytics">
+                    <i className="material-icons">insert_chart</i>
                 </li>
               </Link>
 
               <Link to="/ringtones">
-                <li class="ringtones">
-                    <i class="material-icons">library_music</i>
+                <li className="ringtones">
+                    <i className="material-icons">library_music</i>
                 </li>
               </Link>
             </ul>
           </nav>
         </HashRouter>
-        <div class="logo">
+        <div className="logo">
           <div>pomodoro</div>
         </div>
       </div>
