@@ -5,7 +5,7 @@
 - React
 - React Router
 - [Chat.js](https://www.chartjs.org/)
-- Material Design Icons 
+- Material Design Icons
 - CSS
 - JavaScript
 
@@ -17,6 +17,9 @@
 
 ## 線上預覽
 https://wowsushi.github.io/pomodoro/
+
+## Demo
+![demo](http://g.recordit.co/62SYuYHQ6r.gif)
 
 ## 如何使用?
 ```

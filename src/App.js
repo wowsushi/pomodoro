@@ -23,7 +23,7 @@ class App extends React.Component {
       ],
       activating: false,
       resting: false,
-      count: 1500,
+      count: 15,
       playing: ''
     }
     this.handleChange = this.handleChange.bind(this)
